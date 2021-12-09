@@ -1,5 +1,5 @@
 
-# Lusha devops position home task
+# Devops home task
 
 ## Intro
 
