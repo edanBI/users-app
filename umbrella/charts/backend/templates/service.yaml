@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Chart.Name }}-service
+  labels:
+    app: lusha
+    chart: {{ .Chart.Name }}
+spec:
+  type: {{ .Values.service.type }}
+  selector:
+    app: lusha
+    chart: {{ .Chart.Name }}
+  ports:
+  - port: {{ .Values.service.svcPort }}
+    targetPort: {{ .Values.service.podPort }}
+    protocol: TCP

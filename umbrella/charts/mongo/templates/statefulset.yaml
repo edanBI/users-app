@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Chart.Name }}-statefulset
+  labels:
+    app: lusha
+    chart: {{ .Chart.Name }}
+spec:
+  serviceName: {{ .Values.service.name }}
+  replicas: {{ default 1 .Values.replicaCount | int }}
+  selector:
+    matchLabels:
+      role: mongo
+  template:
+    metadata:
+      labels:
+        app: lusha
+        role: mongo
+        # replicaset: MainRepSet
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}-container
+          image: "{{ .Values.mongo.image.name }}:{{ .Values.mongo.image.version }}"
+          ports:
+            - containerPort: {{ .Values.mongo.port }}
+          volumeMounts:
+            - name: mongodb-persistent-storage-claim
+              mountPath: /data/db
+          # resources:
+          #   requests:
+          #     memory: 200Mi
+  volumeClaimTemplates:
+  - metadata:
+      name: mongodb-persistent-storage-claim
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 200Mi

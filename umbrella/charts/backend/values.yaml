@@ -1,0 +1,6 @@
+image: edanbi/backend:latest
+replicaCount: 1
+service:
+  type: ClusterIP
+  svcPort: 8080
+  podPort: 8080

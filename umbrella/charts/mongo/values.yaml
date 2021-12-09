@@ -1,0 +1,8 @@
+replicaCount: 1
+service:
+  name: mongodb-service
+mongo:
+  image:
+    name: mongo
+    version: latest
+  port: 27017

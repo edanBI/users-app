@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: {{.Chart.Name }}-deployment
+  labels:
+    app: lusha
+    chart: {{ .Chart.Name }}
+spec:
+  selector:
+    matchLabels:
+      chart: {{ .Chart.Name }}
+  replicas: {{ default 1 .Values.replicaCount | int }}
+  template:
+    metadata:
+      labels:
+        app: lusha
+        chart: {{ .Chart.Name }}
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}
+        image: {{ .Values.image }}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: {{ .Values.service.podPort | int }}
+        livenessProbe:
+          httpGet:
+            path: /healthcheck
+            port: {{ .Values.service.podPort | int }}
+        readinessProbe:
+          httpGet:
+            path: /healthcheck
+            port: {{ .Values.service.podPort | int }}
