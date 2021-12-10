@@ -30,3 +30,6 @@ spec:
           httpGet:
             path: /healthcheck
             port: {{ .Values.service.podPort | int }}
+        env:
+        - name: BACKEND_HOST
+          value: backend-service

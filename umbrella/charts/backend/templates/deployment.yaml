@@ -31,8 +31,13 @@ spec:
             path: /healthcheck
             port: {{ .Values.service.svcPort | int }}
         env:
-        - name: MONGO_DB_NAME
+        - name: MONGO_HOST
           value: mongodb-service
+        - name: MONGO_DB_NAME
+          valueFrom:
+            secretKeyRef:
+              name: mongo-secret
+              key: dbname
         - name: MONGO_USERNAME
           valueFrom:
             secretKeyRef:
@@ -43,4 +48,3 @@ spec:
             secretKeyRef:
               name: mongo-secret
               key: password
-        

@@ -7,3 +7,4 @@ service:
 mongo:
   username: lushaUser
   password: lushaPassword
+  dbname: usersdb

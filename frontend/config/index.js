@@ -1,15 +1,18 @@
 
 const config = {
-    backend_url: "http://backend:8080"
+    backend_url: `http://${process.env.BACKEND_HOST}:8080`
 }
 
 function getValue(key, defaultValue) {
-    return config[key] || defaultValue;
+    const value = config[key] || defaultValue;
+    console.log(`getSecret: ${value}`)
+    // return config[key] || defaultValue;
+    return value
 }
 
 function getSecret(key) {
     const value = process.env[key];
-    
+    console.log(`getSecret: ${value}`)
     if (value) {
         return value;
     }

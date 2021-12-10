@@ -16,7 +16,6 @@ spec:
       labels:
         app: lusha
         role: mongo
-        # replicaset: MainRepSet
     spec:
       containers:
         - name: {{ .Chart.Name }}-container
@@ -26,9 +25,6 @@ spec:
           volumeMounts:
             - name: mongodb-persistent-storage-claim
               mountPath: /data/db
-          # resources:
-          #   requests:
-          #     memory: 200Mi
   volumeClaimTemplates:
   - metadata:
       name: mongodb-persistent-storage-claim
