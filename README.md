@@ -1,38 +1,22 @@
+# Intro
 
-# Devops home task
+The app is written in node.js using express framework and MongoDB.
+App purpose is to display a list of users.
 
-## Intro
+## Local deployment using Minikube
 
-In this project you can find 2 folders: frontend and backend. \
-This represents standard structure and web application. \
-The app is written in node.js using express framework.
+Users application should be deployed on a local kubernetes instance.
 
-## The task
+Prerequisite:
 
-You need to make this app deployable to staging \ production env. \
-You can use whatever language, method you konw and love to deploy the app to a local \ remote cluster.
+1. Validate Minikube is installed on your machine.
+2. Clone repository
+3. Open terminal window in repository directory
 
-## Architecture requirements
+Enter the following commands:
 
-1. frontend service will render the site
-2. backend will serve as api layer for the app
-3. the stores its state in mongodb
-4. (optional) mongodb and backend are hidden from outside world
-5. both app are listening by default on port 8080
+`minikube start`
 
-## Note for running the servers
-
-- install dependencies:
-  - `npm install`
-- start the app:
-  - `node index.js`
-
-# Local deployment using Minikube
-
-This application should be deployed on local kubernetes instance. 
-1. Minikube should be installed on your machine.
-Clone repository
-`minikube start` \
 `minikube addons enable ingress`
 
 **In a separate terminal window run**: \
@@ -41,6 +25,19 @@ Clone repository
 You will be displayed with the following information. Copy the highlighted port number. Notice: you will probably see a different value \
 ![Alt text](misc/Screenshot_1.png?raw=true)
 
+Print 
+
+Install application:\
 `helm install users-app umbrella/`
 
-In browser, "http://users.lusha:port"
+Open url "http://users.lusha:copied-port". You should be prompted with a list of users.
+
+Check application installed successfuly:
+`kubectl get pods`
+
+
+3 pods status should be running:
+
+1. frontend-deployment
+2. backend-deployment
+3. mongodb-statefulset-0
