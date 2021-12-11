@@ -7,9 +7,17 @@ metadata:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
 spec:
   rules:
-    - http:
+    - host: users.lusha
+      http:
         paths:
           - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.service.name }}
+                port: 
+                  number: {{ .Values.service.externalPort }}
+          - path: /healthcheck
             pathType: Prefix
             backend:
               service:

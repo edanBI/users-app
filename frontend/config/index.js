@@ -4,9 +4,9 @@ const config = {
 }
 
 function getValue(key, defaultValue) {
-    const value = config[key] || defaultValue;
-    console.log(`getSecret: ${value}`)
     // return config[key] || defaultValue;
+    const value = config[key] || defaultValue;
+    console.log(`getValue: ${value}`)
     return value
 }
 

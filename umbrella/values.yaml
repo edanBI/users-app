@@ -1,10 +1,13 @@
 ingress:
   name: lusha-ingress
+
 service:
   name: frontend-service
   externalPort: 8080
   internalPort: 8080
-mongo:
-  username: lushaUser
-  password: lushaPassword
-  dbname: usersdb
+
+global:
+  mongo:
+    username: lushaUser
+    password: lushaPassword
+    dbname: usersdb

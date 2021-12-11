@@ -6,19 +6,20 @@ async function initDb(db) {
     console.log("trying to init db...")
     var dbo = await client.db(getValue("mongodb_dbname"));
     dbo.createCollection('Users', function(err, res) {
-        if (err) throw err;
+        if (err) {
+            console.log('Users collection already exists')
+            return
+        };
         console.log("Users Collection created!");
-    });
-
-    var users = [
-        { name: "user 1"},
-        { name: "user 2"},
-        { name: "user 3"}
-    ]
-    users.forEach(element => {
-        dbo.collection('Users').insertOne(element, (err, res) => {
+        var users = [
+            { name: "eric"},
+            { name: "stan"},
+            { name: "kyle"},
+            { name: "kenny"}
+        ]
+        dbo.collection('Users').insertMany(users, (err, res) => {
             if (err) throw err;
-            console.log(`Element ${element.name} inserted.`)
+            console.log(`Users Inserted.`)
         })
     });
 }

@@ -22,7 +22,21 @@ You can use whatever language, method you konw and love to deploy the app to a l
 
 ## Note for running the servers
 
-- install dependencies: 
-    - `npm install`
+- install dependencies:
+  - `npm install`
 - start the app:
-    - `node index.js`
+  - `node index.js`
+
+# Local deployment using Minikube
+
+minikube start
+minikube addons enable ingress
+in a **new terminal** run \
+`minikube service ingress-nginx-controller -n ingress-nginx --url` \
+\
+Copy the highlighted port number, notice - you will probably see a different value
+![Alt text](misc/Screenshot_1.png?raw=true)
+
+`helm install users-app <helm_dir_path>`
+
+In browser, "http://users.lusha:port"

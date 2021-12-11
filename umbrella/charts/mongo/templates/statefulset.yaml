@@ -25,6 +25,11 @@ spec:
           volumeMounts:
             - name: mongodb-persistent-storage-claim
               mountPath: /data/db
+          env:
+          - name: MONGO_INITDB_ROOT_USERNAME
+            value: {{ .Values.global.mongo.username }}
+          - name: MONGO_INITDB_ROOT_PASSWORD
+            value: {{ .Values.global.mongo.password }}
   volumeClaimTemplates:
   - metadata:
       name: mongodb-persistent-storage-claim

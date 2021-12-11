@@ -17,16 +17,16 @@ spec:
         app: lusha
         chart: {{ .Chart.Name }}
     spec:
+      initContainers:
+      - name: init-backend
+        image: alpine
+        command: ['sh', '-c', "until nslookup mongodb-service.default.svc.cluster.local; do echo waiting for mongodb-service; sleep 0.1; done"]
       containers:
       - name: {{ .Chart.Name }}
         image: {{ .Values.image }}
         ports:
         - containerPort: {{ .Values.service.podPort | int }}
         livenessProbe:
-          httpGet:
-            path: /healthcheck
-            port: {{ .Values.service.svcPort | int }}
-        readinessProbe:
           httpGet:
             path: /healthcheck
             port: {{ .Values.service.svcPort | int }}

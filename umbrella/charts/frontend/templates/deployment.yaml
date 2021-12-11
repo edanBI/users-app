@@ -16,6 +16,10 @@ spec:
         app: lusha
         chart: {{ .Chart.Name }}
     spec:
+      initContainers:
+      - name: init-frontend
+        image: alpine
+        command: ['sh', '-c', "until nslookup backend-service.default.svc.cluster.local; do echo waiting for backend-service; sleep 1; done"]
       containers:
       - name: {{ .Chart.Name }}
         image: {{ .Values.image }}
@@ -26,10 +30,9 @@ spec:
           httpGet:
             path: /healthcheck
             port: {{ .Values.service.podPort | int }}
-        readinessProbe:
-          httpGet:
-            path: /healthcheck
-            port: {{ .Values.service.podPort | int }}
+        resources:
+          requests:
+            cpu: 100m
         env:
         - name: BACKEND_HOST
           value: backend-service
