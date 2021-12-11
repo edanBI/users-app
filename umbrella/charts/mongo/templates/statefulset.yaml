@@ -17,6 +17,7 @@ spec:
         app: lusha
         role: mongo
     spec:
+      serviceAccountName: {{ .Values.global.serviceaccount.name }}
       containers:
         - name: {{ .Chart.Name }}-container
           image: "{{ .Values.mongo.image.name }}:{{ .Values.mongo.image.version }}"

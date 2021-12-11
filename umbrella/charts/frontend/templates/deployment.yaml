@@ -16,6 +16,7 @@ spec:
         app: lusha
         chart: {{ .Chart.Name }}
     spec:
+      serviceAccountName: {{ .Values.global.serviceaccount.name }}
       initContainers:
       - name: init-frontend
         image: alpine
