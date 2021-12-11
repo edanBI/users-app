@@ -2,15 +2,15 @@
 const { getValue } = require('../config');
 const { MongoClient } = require('mongodb');
 
+// create new users collection if not exists in the database and insert usernames
 async function initDb(db) {
-    console.log("trying to init db...")
     var dbo = await client.db(getValue("mongodb_dbname"));
     dbo.createCollection('Users', function(err, res) {
         if (err) {
-            console.log('Users collection already exists')
+            console.log('initDb:Users collection already exists')
             return
         };
-        console.log("Users Collection created!");
+        console.log("initDb:Users Collection created");
         var users = [
             { name: "eric"},
             { name: "stan"},
@@ -19,7 +19,7 @@ async function initDb(db) {
         ]
         dbo.collection('Users').insertMany(users, (err, res) => {
             if (err) throw err;
-            console.log(`Users Inserted.`)
+            console.log(`initDb:Users Inserted.`)
         })
     });
 }
@@ -56,9 +56,8 @@ const db = new Promise((res, rej) => {
     }
 
     catch (e) {
-        console.error('*** failed to create db connection ***')
+        console.error('*** db connection failed ***')
         console.error(e);
-        console.error('*** end of db connection error ***')
         process.exit(1);
     }
 

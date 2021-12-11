@@ -4,15 +4,11 @@ const config = {
 }
 
 function getValue(key, defaultValue) {
-    // return config[key] || defaultValue;
-    const value = config[key] || defaultValue;
-    console.log(`getValue: ${value}`)
-    return value
+    return config[key] || defaultValue;
 }
 
 function getSecret(key) {
     const value = process.env[key];
-    console.log(`getSecret: ${value}`)
     if (value) {
         return value;
     }

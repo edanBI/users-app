@@ -29,14 +29,18 @@ You can use whatever language, method you konw and love to deploy the app to a l
 
 # Local deployment using Minikube
 
-minikube start
-minikube addons enable ingress
-in a **new terminal** run \
-`minikube service ingress-nginx-controller -n ingress-nginx --url` \
-\
-Copy the highlighted port number, notice - you will probably see a different value
+This application should be deployed on local kubernetes instance. 
+1. Minikube should be installed on your machine.
+Clone repository
+`minikube start` \
+`minikube addons enable ingress`
+
+**In a separate terminal window run**: \
+`minikube service ingress-nginx-controller -n ingress-nginx --url`
+
+You will be displayed with the following information. Copy the highlighted port number. Notice: you will probably see a different value \
 ![Alt text](misc/Screenshot_1.png?raw=true)
 
-`helm install users-app <helm_dir_path>`
+`helm install users-app umbrella/`
 
 In browser, "http://users.lusha:port"

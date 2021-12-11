@@ -2,6 +2,6 @@ image: edanbi/frontend:latest
 replicaCount: 1
 service:
   name: frontend-service
-  type: NodePort
+  type: ClusterIP
   svcPort: 8080
   podPort: 8080

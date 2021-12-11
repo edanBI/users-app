@@ -31,6 +31,8 @@ spec:
             value: {{ .Values.global.mongo.username }}
           - name: MONGO_INITDB_ROOT_PASSWORD
             value: {{ .Values.global.mongo.password }}
+          - name: MONGO_INITDB_DATABASE
+            value: {{ .Values.global.mongo.dbname }}
   volumeClaimTemplates:
   - metadata:
       name: mongodb-persistent-storage-claim
