@@ -19,25 +19,28 @@ Enter the following commands:
 
 `minikube addons enable ingress`
 
-**In a separate terminal window run**: \
+**Expose the application - In a separate terminal window run**: \
 `minikube service ingress-nginx-controller -n ingress-nginx --url`
 
 You will be displayed with the following information. Copy the highlighted port number. Notice: you will probably see a different value \
 ![Alt text](misc/Screenshot_1.png?raw=true)
 
-Print 
-
 Install application:\
 `helm install users-app umbrella/`
-
-Open url "http://users.lusha:copied-port". You should be prompted with a list of users.
 
 Check application installed successfuly:
 `kubectl get pods`
 
-
-3 pods status should be running:
+Following pods status should be 'Running':
 
 1. frontend-deployment
 2. backend-deployment
 3. mongodb-statefulset-0
+
+Verify the IP address is set:
+`kubectl get ingress`
+
+Add the following line to the bottom of the /etc/hosts file on your computer (you will need administrator access):
+`<INGRESS-ADDRESS>     users.lusha`
+
+To view the users available by the application, Open url "http://users.lusha:<port-number>".
