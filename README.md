@@ -23,7 +23,8 @@ Enter the following commands:
 **Expose the application - In a separate terminal window run**: \
 `minikube service ingress-nginx-controller -n ingress-nginx --url`
 
-You will be displayed with the following information. Copy the highlighted port number. Notice: you will probably see a different value \
+You will be displayed with the following information. Copy the highlighted port number.\
+Notice: you will probably see a different value \
 ![Alt text](misc/Screenshot_1.png?raw=true)
 
 Install application (as non root user):\
