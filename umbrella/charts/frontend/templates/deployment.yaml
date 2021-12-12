@@ -33,7 +33,7 @@ spec:
             port: {{ .Values.service.podPort | int }}
         resources:
           requests:
-            cpu: 100m
+            cpu: 200m
         env:
         - name: BACKEND_HOST
           value: backend-service

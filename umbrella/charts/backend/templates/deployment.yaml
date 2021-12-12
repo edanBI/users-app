@@ -31,6 +31,9 @@ spec:
           httpGet:
             path: /healthcheck
             port: {{ .Values.service.svcPort | int }}
+        resources:
+          requests:
+            cpu: 200m
         env:
         - name: MONGO_HOST
           value: mongodb-service
