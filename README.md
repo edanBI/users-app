@@ -46,4 +46,4 @@ Add the following line to the bottom of the /etc/hosts file on your computer (yo
 `<INGRESS-ADDRESS>     users.lusha`\
 (If running on localhost and ingress-nginx-controller is of type NodePort, the address value in hosts file should be set to 127.0.0.1)
 
-To view the users available by the application, Open url "http://users.lusha:<port-number>".
+To view the users available by the application, Open url "http://users.lusha:yellow-port-number".
