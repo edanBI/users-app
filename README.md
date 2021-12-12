@@ -17,7 +17,8 @@ Enter the following commands:
 
 `minikube start`
 
-`minikube addons enable ingress`
+`minikube addons enable ingress metrics-server`\
+`minikube addons enable metrics-server`
 
 **Expose the application - In a separate terminal window run**: \
 `minikube service ingress-nginx-controller -n ingress-nginx --url`
@@ -25,7 +26,7 @@ Enter the following commands:
 You will be displayed with the following information. Copy the highlighted port number. Notice: you will probably see a different value \
 ![Alt text](misc/Screenshot_1.png?raw=true)
 
-Install application:\
+Install application (as non root user):\
 `helm install users-app umbrella/`
 
 Check application installed successfuly:
